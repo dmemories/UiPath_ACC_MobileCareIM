@@ -1,0 +1,547 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="709.693251533742,972.368098159509" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System" xmlns:ss="clr-namespace:System.Security;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="34">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Net</x:String>
+      <x:String>Microsoft.Exchange.WebServices.Data</x:String>
+      <x:String>UiPath.Mail.Exchange.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="26">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>Microsoft.Exchange.WebServices</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="719.705521472393,907.58282208589" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch.Variables>
+      <Variable x:TypeArguments="s:Exception" Default="[Nothing]" Name="g_exception" />
+      <Variable x:TypeArguments="x:String" Default="Temp" Name="g_tempPath" />
+      <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="g_config" />
+      <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="g_mailMsgList" />
+      <Variable x:TypeArguments="x:String" Name="g_excMailDomain" />
+      <Variable x:TypeArguments="x:String" Name="g_excMailDiscover" />
+      <Variable x:TypeArguments="ss:SecureString" Name="g_excMailSPass" />
+      <Variable x:TypeArguments="x:String" Name="g_excMailUser" />
+      <Variable x:TypeArguments="x:Int32" Default="0" Name="g_mailMsgIndex" />
+    </TryCatch.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <TryCatch.Try>
+      <Flowchart DisplayName="Main" sap:VirtualizedContainerService.HintSize="681.423312883436,679.656441717791" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <av:Point x:Key="ShapeLocation">19.9631901840491,32.601226993865</av:Point>
+            <av:Size x:Key="ShapeSize">60.0736196319018,74.7975460122699</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">80.0368098159509,70 130.036809815951,70</av:PointCollection>
+            <x:Double x:Key="Height">643.58282208588957</x:Double>
+            <x:Double x:Key="Width">647</x:Double>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <Flowchart.StartNode>
+          <x:Reference>__ReferenceID9</x:Reference>
+        </Flowchart.StartNode>
+        <FlowStep x:Name="__ReferenceID9">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">130.036809815951,37.3128834355828</av:Point>
+              <av:Size x:Key="ShapeSize">200.245398773006,65.3742331288343</av:Size>
+              <av:PointCollection x:Key="ConnectorLocation">330.282208588957,70 360.282208588957,70 360.282208588957,70.0571165644172 390.282208588957,70.0571165644172</av:PointCollection>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Sequence DisplayName="Initial" sap:VirtualizedContainerService.HintSize="200.245398773006,65.3742331288343" sap2010:WorkflowViewState.IdRef="Sequence_1">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="ss:SecureString" Name="sPassword" />
+              <Variable x:TypeArguments="x:String" Name="username" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="ACC_MobileCareAsurion_Share" DisplayName="Get Credential" sap:VirtualizedContainerService.HintSize="376.343558282209,78.3312883435583" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[sPassword]" Username="[username]" />
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="376.343558282209,90.1104294478528" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;Finished Get Credential (ACC_MobileCareAsurion_Share)&quot;]" />
+            <Sequence DisplayName="Read Config File" sap:VirtualizedContainerService.HintSize="376.343558282209,686.134969325153" sap2010:WorkflowViewState.IdRef="Sequence_8">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="WriteAndRunCommand (Clear Netuse)" sap:VirtualizedContainerService.HintSize="333.938650306748,86.5766871165644" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Invoke\WriteAndRunCommand.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_command">net use /d * /y</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <Delay DisplayName=" Delay 3 seconds" Duration="00:00:03" sap:VirtualizedContainerService.HintSize="333.938650306748,21.7914110429448" sap2010:WorkflowViewState.IdRef="Delay_1" />
+              <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="WriteAndRunCommand (Netuse)" sap:VirtualizedContainerService.HintSize="333.938650306748,86.5766871165644" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Invoke\WriteAndRunCommand.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_command">["net use " + "\\10.235.152.14\RPA_ACC_MobileCare\Master" + " /User:" + username +" " + new System.net.NetworkCredential(string.Empty, sPassword).Password]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <Delay DisplayName=" Delay 3 seconds" Duration="00:00:03" sap:VirtualizedContainerService.HintSize="333.938650306748,21.7914110429448" sap2010:WorkflowViewState.IdRef="Delay_6" />
+              <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Read Excel Config" sap:VirtualizedContainerService.HintSize="333.938650306748,86.5766871165644" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Invoke\ReadExcelConfig.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_excelPath">\\10.235.152.14\RPA_ACC_MobileCare\Master\Config.xlsx</InArgument>
+                  <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="out_config">[g_config]</OutArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.938650306748,90.1104294478528" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Finished Read Config&quot;]" />
+            </Sequence>
+            <Sequence DisplayName="Connect To Share Path" sap:VirtualizedContainerService.HintSize="376.343558282209,497.668711656442" sap2010:WorkflowViewState.IdRef="Sequence_10">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="WriteAndRunCommand (Clear Netuse)" sap:VirtualizedContainerService.HintSize="333.938650306748,86.5766871165644" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Invoke\WriteAndRunCommand.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_command">net use /d * /y</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <Delay DisplayName=" Delay 3 seconds" Duration="00:00:03" sap:VirtualizedContainerService.HintSize="333.938650306748,21.7914110429448" sap2010:WorkflowViewState.IdRef="Delay_3" />
+              <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="WriteAndRunCommand (Netuse)" sap:VirtualizedContainerService.HintSize="333.938650306748,86.5766871165644" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Invoke\WriteAndRunCommand.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_command">["net use " + g_config("SharePathAddress").ToString + " /User:" + username + " " + new System.net.NetworkCredential(string.Empty, sPassword).Password]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.938650306748,90.1104294478528" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Finished Connect to SharePath&quot;]" />
+            </Sequence>
+            <Sequence DisplayName="Email Credential" sap:VirtualizedContainerService.HintSize="376.343558282209,500.024539877301" sap2010:WorkflowViewState.IdRef="Sequence_17">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="ACC_MobileCareAsurion_Appl" DisplayName="Get Credential" sap:VirtualizedContainerService.HintSize="333.938650306748,78.3312883435583" sap2010:WorkflowViewState.IdRef="GetRobotCredential_4" Password="[g_excMailSPass]" Username="[g_excMailUser]" />
+              <Assign sap:VirtualizedContainerService.HintSize="333.938650306748,59.4846625766871" sap2010:WorkflowViewState.IdRef="Assign_4">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[g_excMailDiscover]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[g_excMailUser + "@ais.co.th"]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap:VirtualizedContainerService.HintSize="333.938650306748,59.4846625766871" sap2010:WorkflowViewState.IdRef="Assign_5">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[g_excMailDomain]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">CORP-AIS900</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.938650306748,90.1104294478528" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[&quot;Finished Get Credential (ACC_MobileCareAsurion_Appl)&quot;]" />
+            </Sequence>
+          </Sequence>
+          <FlowStep.Next>
+            <FlowStep x:Name="__ReferenceID3">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <av:Point x:Key="ShapeLocation">390.282208588957,37.37</av:Point>
+                  <av:Size x:Key="ShapeSize">200.245398773006,65.3742331288343</av:Size>
+                  <av:PointCollection x:Key="ConnectorLocation">490.40490797546,102.744233128834 490.40490797546,142.744233128834</av:PointCollection>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Sequence DisplayName="Get Exchange Email" sap:VirtualizedContainerService.HintSize="200.245398773006,65.3742331288343" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="mailMsgListTemp" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:GetExchangeMailMessages Server="{x:Null}" SharedMailbox="{x:Null}" TimeoutMS="{x:Null}" CustomFolder="Inbox" DisplayName="Get Exchange Mail Messages" Domain="[g_excMailDomain]" EmailAutodiscover="[g_excMailDiscover]" ExchangeVersion="Exchange2007_SP1" GetAttachements="True" sap:VirtualizedContainerService.HintSize="520.638036809816,21.7914110429448" sap2010:WorkflowViewState.IdRef="GetExchangeMailMessages_1" IsBodyHtml="False" MailFolder="Calendar" MarkAsRead="True" Messages="[mailMsgListTemp]" OnlyUnreadMessages="True" Password="[new System.Net.NetworkCredential(string.Empty, g_excMailSPass).Password]" Top="15" User="[g_excMailUser]" />
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520.638036809816,90.1104294478528" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Finished Get Mail Exchange&quot;]" />
+                <Assign sap:VirtualizedContainerService.HintSize="520.638036809816,59.4846625766871" sap2010:WorkflowViewState.IdRef="Assign_3">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="scg:List(snm:MailMessage)">[g_mailMsgList]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="scg:List(snm:MailMessage)">[new List(OF MailMessage)]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="For Each MailMsg" sap:VirtualizedContainerService.HintSize="520.638036809816,371.631901840491" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[mailMsgListTemp]">
+                  <ui:ForEach.Body>
+                    <ActivityAction x:TypeArguments="snm:MailMessage">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="snm:MailMessage" Name="mail" />
+                      </ActivityAction.Argument>
+                      <If Condition="[mail.Subject.Contains(&quot;Waive MobileCare ประจำวันที่ &quot;)]" sap:VirtualizedContainerService.HintSize="484.122699386503,237.938650306748" sap2010:WorkflowViewState.IdRef="If_3">
+                        <If.Then>
+                          <AddToCollection x:TypeArguments="snm:MailMessage" Collection="[g_mailMsgList]" DisplayName="Add To Collection" sap:VirtualizedContainerService.HintSize="200.245398773006,21.7914110429448" sap2010:WorkflowViewState.IdRef="AddToCollection`1_2" Item="[mail]" />
+                        </If.Then>
+                        <If.Else>
+                          <Sequence sap:VirtualizedContainerService.HintSize="200,83" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Sequence>
+                        </If.Else>
+                      </If>
+                    </ActivityAction>
+                  </ui:ForEach.Body>
+                </ui:ForEach>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520.638036809816,90.1104294478528" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;Finished Get Mail Exchange&quot;]" />
+              </Sequence>
+              <FlowStep.Next>
+                <FlowDecision x:Name="__ReferenceID4" Condition="[g_mailMsgList.Count &lt; 1]" DisplayName="No Emalls" sap:VirtualizedContainerService.HintSize="70.0858895705521,87.1656441717791" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <av:Point x:Key="ShapeLocation">455.361963190184,142.744233128834</av:Point>
+                      <av:Size x:Key="ShapeSize">70.0858895705521,87.1656441717791</av:Size>
+                      <av:PointCollection x:Key="TrueConnector">455.361963190184,186.327055214724 335.361963190184,186.327055214724</av:PointCollection>
+                      <av:PointCollection x:Key="FalseConnector">525.447852760736,186.327055214724 553.042944785276,186.327055214724 553.042944785276,236.41717791411 493.042944785276,236.41717791411 493.042944785276,266.41717791411</av:PointCollection>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <FlowDecision.True>
+                    <FlowStep x:Name="__ReferenceID5">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <av:Point x:Key="ShapeLocation">135.116564417178,153.639938650307</av:Point>
+                          <av:Size x:Key="ShapeSize">200.245398773006,65.3742331288343</av:Size>
+                          <av:PointCollection x:Key="ConnectorLocation">135.116564417178,186.327055214724 66.5521472392638,186.327055214724 66.5521472392638,580 144.711656441718,580</av:PointCollection>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Sequence DisplayName="Send Emaill (No Emails)" sap:VirtualizedContainerService.HintSize="200.245398773006,65.3742331288343" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:SendExchangeMail Bcc="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Server="{x:Null}" TimeoutMS="{x:Null}" Body="[g_config(&quot;Not_Receive_Email_Body&quot;).tostring.Replace(&quot;[DATETIME]&quot;, DateTime.Today.ToString(&quot;dd/MM/yyyy&quot;))]" Cc="[g_config(&quot;CC&quot;).ToString]" DisplayName="Send Exchange Mail Message" Domain="[g_excMailDomain]" EmailAutodiscover="[g_excMailDiscover]" ExchangeVersion="Exchange2007_SP1" sap:VirtualizedContainerService.HintSize="333.938650306748,143.705521472393" sap2010:WorkflowViewState.IdRef="SendExchangeMail_2" IsBodyHtml="False" IsDraft="False" Password="[new System.Net.NetworkCredential(String.Empty, g_excMailSPass).Password]" SaveCopy="True" Subject="[g_config(&quot;Not_Receive_Email_Subject&quot;).tostring.Replace(&quot;[DATETIME]&quot;, DateTime.Today.ToString(&quot;dd/MM/yyyy&quot;))]" To="[g_config(&quot;mailTo&quot;).ToString]" User="[g_excMailUser]" />
+                      </Sequence>
+                      <FlowStep.Next>
+                        <FlowStep x:Name="__ReferenceID0">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <av:Point x:Key="ShapeLocation">144.711656441718,547.312883435583</av:Point>
+                              <av:Size x:Key="ShapeSize">200.245398773006,65.3742331288343</av:Size>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Sequence DisplayName="Clear All" sap:VirtualizedContainerService.HintSize="200.245398773006,65.3742331288343" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="WriteAndRunCommand (Clear Netuse)" sap:VirtualizedContainerService.HintSize="333.938650306748,86.5766871165644" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="Invoke\WriteAndRunCommand.xaml">
+                              <ui:InvokeWorkflowFile.Arguments>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_command">net use /d * /y</InArgument>
+                              </ui:InvokeWorkflowFile.Arguments>
+                            </ui:InvokeWorkflowFile>
+                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.938650306748,90.1104294478528" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Info" Message="[&quot;Clear Netuse&quot;]" />
+                          </Sequence>
+                        </FlowStep>
+                      </FlowStep.Next>
+                    </FlowStep>
+                  </FlowDecision.True>
+                  <FlowDecision.False>
+                    <FlowDecision x:Name="__ReferenceID1" Condition="[g_mailMsgList(g_mailMsgIndex).Attachments.Count &lt; 1]" DisplayName="No Attach Files" sap:VirtualizedContainerService.HintSize="80.0981595092024,87.1656441717791" sap2010:WorkflowViewState.IdRef="FlowDecision_2">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <av:Point x:Key="ShapeLocation">452.993865030675,266.41717791411</av:Point>
+                          <av:Size x:Key="ShapeSize">80.0981595092024,87.1656441717791</av:Size>
+                          <av:PointCollection x:Key="TrueConnector">452.993865030675,310 340.122699386503,310</av:PointCollection>
+                          <av:PointCollection x:Key="FalseConnector">533.092024539877,310 563.092024539877,310 563.092024539877,377.312883435583 240,377.312883435583 240,407.312883435583</av:PointCollection>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <FlowDecision.True>
+                        <FlowStep x:Name="__ReferenceID6">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <av:Point x:Key="ShapeLocation">139.877300613497,277.312883435583</av:Point>
+                              <av:Size x:Key="ShapeSize">200.245398773006,65.3742331288343</av:Size>
+                              <av:PointCollection x:Key="ConnectorLocation">139.877300613497,310 118.969325153374,310 118.969325153374,518.341865030675 362.208588957055,518.341865030675 362.208588957055,440 390.122699386503,440</av:PointCollection>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Sequence DisplayName="Send Emaill (No Attach Files)" sap:VirtualizedContainerService.HintSize="200.245398773006,65.3742331288343" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.938650306748,90.1104294478528" sap2010:WorkflowViewState.IdRef="LogMessage_15" Level="Info" Message="[&quot;No Attach Files Mail Subject (&quot; + g_mailMsgList(g_mailMsgIndex).Subject + &quot;)&quot;]" />
+                            <ui:SendExchangeMail Bcc="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Server="{x:Null}" TimeoutMS="{x:Null}" Body="[g_mailMsgList(g_mailMsgIndex).Subject + vbCrlf + g_config(&quot;No_Attachments_Email_Body&quot;).tostring.Replace(&quot;[DATETIME]&quot;, DateTime.Today.ToString(&quot;dd/MM/yyyy&quot;))]" Cc="[g_config(&quot;CC&quot;).ToString]" DisplayName="Send Exchange Mail Message" Domain="[g_excMailDomain]" EmailAutodiscover="[g_excMailDiscover]" ExchangeVersion="Exchange2007_SP1" sap:VirtualizedContainerService.HintSize="333.938650306748,143.705521472393" sap2010:WorkflowViewState.IdRef="SendExchangeMail_3" IsBodyHtml="False" IsDraft="False" Password="[new System.Net.NetworkCredential(String.Empty, g_excMailSPass).Password]" SaveCopy="True" Subject="[g_config(&quot;No_Attachments_Email_Subject&quot;).tostring.Replace(&quot;[DATETIME]&quot;, DateTime.Today.ToString(&quot;dd/MM/yyyy&quot;))]" To="[g_config(&quot;mailTo&quot;).ToString]" User="[g_excMailUser]" />
+                          </Sequence>
+                          <FlowStep.Next>
+                            <FlowStep x:Name="__ReferenceID2">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <av:Point x:Key="ShapeLocation">390.122699386503,407.312883435583</av:Point>
+                                  <av:Size x:Key="ShapeSize">200.245398773006,65.3742331288343</av:Size>
+                                  <av:PointCollection x:Key="ConnectorLocation">490.245398773006,472.687116564417 490.245398773006,502.687116564417 490,502.687116564417 490,536.41717791411</av:PointCollection>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <Sequence DisplayName="Set Next Index" sap:VirtualizedContainerService.HintSize="200.245398773006,65.3742331288343" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <Assign sap:VirtualizedContainerService.HintSize="262.085889570552,59.4846625766871" sap2010:WorkflowViewState.IdRef="Assign_12">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Int32">[g_mailMsgIndex]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Int32">[g_mailMsgIndex + 1]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Sequence>
+                              <FlowStep.Next>
+                                <FlowDecision x:Name="__ReferenceID8" Condition="[g_mailMsgList.Count &lt;= g_mailMsgIndex]" DisplayName="No Remaining Emails" sap:VirtualizedContainerService.HintSize="110.723926380368,87.1656441717791" sap2010:WorkflowViewState.IdRef="FlowDecision_3" True="{x:Reference __ReferenceID0}" False="{x:Reference __ReferenceID1}">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <av:Point x:Key="ShapeLocation">434.638036809816,536.41717791411</av:Point>
+                                      <av:Size x:Key="ShapeSize">110.723926380368,87.1656441717791</av:Size>
+                                      <av:PointCollection x:Key="TrueConnector">434.638036809816,580 344.957055214724,580</av:PointCollection>
+                                      <av:PointCollection x:Key="FalseConnector">545.361963190184,580 605.361963190184,580 605.361963190184,250 493.042944785276,250 493.042944785276,266.41717791411</av:PointCollection>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </FlowDecision>
+                              </FlowStep.Next>
+                            </FlowStep>
+                          </FlowStep.Next>
+                        </FlowStep>
+                      </FlowDecision.True>
+                      <FlowDecision.False>
+                        <FlowStep x:Name="__ReferenceID7">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <av:Point x:Key="ShapeLocation">139.877300613497,407.312883435583</av:Point>
+                              <av:Size x:Key="ShapeSize">200.245398773006,65.3742331288343</av:Size>
+                              <av:PointCollection x:Key="ConnectorLocation">340.122699386503,440 390.122699386503,440</av:PointCollection>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Sequence DisplayName="Processes" sap:VirtualizedContainerService.HintSize="841.030674846626,2054.28220858896" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                            <Sequence.Variables>
+                              <Variable x:TypeArguments="x:String" Name="replyBody" />
+                              <Variable x:TypeArguments="x:Boolean" Name="IsbodyMatched" />
+                              <Variable x:TypeArguments="scg:List(x:String)" Name="attachFilePathList" />
+                            </Sequence.Variables>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="798.625766871166,90.1104294478528" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Info" Message="[&quot;Processing Mail Subject (&quot; + g_mailMsgList(g_mailMsgIndex).Subject + &quot;)&quot;]" />
+                            <ui:IsMatch DisplayName="Is Match" sap:VirtualizedContainerService.HintSize="798.625766871166,58.8957055214724" sap2010:WorkflowViewState.IdRef="IsMatch_1" Input="[g_mailMsgList(g_mailMsgIndex).Body]" IsBuilderTabModified="False" Pattern="รายการที่ไม่สามารถทำรายการได้ [1-9][0-9]* รายการ" RegexOption="IgnoreCase" Result="[IsbodyMatched]" />
+                            <ui:SaveMailAttachments Attachments="{x:Null}" DisplayName="Save Attachments" Filter=".(?i)(.xlsx|.xls)" FolderPath="[g_tempPath]" sap:VirtualizedContainerService.HintSize="798.625766871166,86.5766871165644" sap2010:WorkflowViewState.IdRef="SaveMailAttachments_2" Message="[g_mailMsgList(g_mailMsgIndex)]" />
+                            <Assign sap:VirtualizedContainerService.HintSize="798.625766871166,59.4846625766871" sap2010:WorkflowViewState.IdRef="Assign_13">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="scg:List(x:String)">[attachFilePathList]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="scg:List(x:String)">[new List(Of String)]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each Attach Files" sap:VirtualizedContainerService.HintSize="798.625766871166,193.766871165644" sap2010:WorkflowViewState.IdRef="ForEach`1_7" Values="[Directory.GetFiles(g_tempPath, &quot;*.xls*&quot;)]">
+                              <ui:ForEach.Body>
+                                <ActivityAction x:TypeArguments="x:String">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="x:String" Name="attachFilePath" />
+                                  </ActivityAction.Argument>
+                                  <AddToCollection x:TypeArguments="x:String" Collection="[attachFilePathList]" DisplayName="Add To Collection" sap:VirtualizedContainerService.HintSize="200.245398773006,21.7914110429448" sap2010:WorkflowViewState.IdRef="AddToCollection`1_4" Item="[attachFilePath]" />
+                                </ActivityAction>
+                              </ui:ForEach.Body>
+                            </ui:ForEach>
+                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="798.625766871166,90.1104294478528" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Info" Message="[&quot;Finised Save &amp; Add files to collection&quot;]" />
+                            <If sap2010:Annotation.AnnotationText="ตรวจสอบว่ามีรายการที่ Error หรือไม่ ถ้าไม่มี ไป Then ถ้ามี ไป Else" Condition="[IsbodyMatched]" sap:VirtualizedContainerService.HintSize="798.625766871166,697.325153374233" sap2010:WorkflowViewState.IdRef="If_4">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <If.Then>
+                                <Sequence DisplayName="Then Do" sap:VirtualizedContainerService.HintSize="376.343558282209,508.269938650307" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <Assign sap:VirtualizedContainerService.HintSize="333.938650306748,59.4846625766871" sap2010:WorkflowViewState.IdRef="Assign_8">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:String">[replyBody]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:String">[g_config("No_Error_Body").Tostring.Replace("[DATETIME]", DateTime.Today.AddDays(-1).ToString("dd/MM/yyyy"))]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <Assign sap:VirtualizedContainerService.HintSize="333.938650306748,59.4846625766871" sap2010:WorkflowViewState.IdRef="Assign_9">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:String">[replyBody]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:String">[replyBody.Replace("[SPACE]", "&lt;br&gt;")]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Reply Exchange Mail" sap:VirtualizedContainerService.HintSize="333.938650306748,86.5766871165644" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="Invoke\Reply Exchange Mail.xaml">
+                                    <ui:InvokeWorkflowFile.Arguments>
+                                      <InArgument x:TypeArguments="snm:MailMessage" x:Key="Email">
+                                        <mva:VisualBasicValue x:TypeArguments="snm:MailMessage" ExpressionText="g_mailMsgList(g_mailMsgIndex)" />
+                                      </InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="Body">
+                                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="replyBody" />
+                                      </InArgument>
+                                      <InArgument x:TypeArguments="x:Boolean" x:Key="ReplyAll">
+                                        <Literal x:TypeArguments="x:Boolean" />
+                                      </InArgument>
+                                      <InArgument x:TypeArguments="x:Boolean" x:Key="BodyHTML">
+                                        <Literal x:TypeArguments="x:Boolean" Value="True" />
+                                      </InArgument>
+                                      <InArgument x:TypeArguments="scg:List(x:String)" x:Key="ListOfAttachment">
+                                        <mva:VisualBasicValue x:TypeArguments="scg:List(x:String)" ExpressionText="attachFilePathList" />
+                                      </InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="Username">
+                                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="g_excMailUser" />
+                                      </InArgument>
+                                      <InArgument x:TypeArguments="ss:SecureString" x:Key="Password">
+                                        <mva:VisualBasicValue x:TypeArguments="ss:SecureString" ExpressionText="g_excMailSPass" />
+                                      </InArgument>
+                                      <InArgument x:TypeArguments="s:String[]" x:Key="CC">
+                                        <mva:VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="g_config(&quot;CC&quot;).ToString.Split({&quot;,&quot;},StringSplitOptions.None)" />
+                                      </InArgument>
+                                    </ui:InvokeWorkflowFile.Arguments>
+                                  </ui:InvokeWorkflowFile>
+                                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.938650306748,90.1104294478528" sap2010:WorkflowViewState.IdRef="LogMessage_16" Level="Info" Message="[&quot;Error Transaction Found. Reply Email to Email Sender&quot;]" />
+                                </Sequence>
+                              </If.Then>
+                              <If.Else>
+                                <Sequence DisplayName="Else Do" sap:VirtualizedContainerService.HintSize="376.343558282209,366.331288343558" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ui:SendExchangeMail Bcc="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Server="{x:Null}" TimeoutMS="{x:Null}" Body="[g_mailMsgList(g_mailMsgIndex).Subject + vbCrlf + g_config(&quot;Has_Error_Body&quot;).ToString.Replace(&quot;[DATETIME]&quot;, DateTime.Today.ToString(&quot;dd/MM/yyyy&quot;))]" Cc="[g_config(&quot;CC&quot;).ToString]" DisplayName="Send Exchange Mail Message" Domain="[g_excMailDomain]" EmailAutodiscover="[g_excMailDiscover]" ExchangeVersion="Exchange2007_SP1" sap:VirtualizedContainerService.HintSize="333.938650306748,143.705521472393" sap2010:WorkflowViewState.IdRef="SendExchangeMail_4" IsBodyHtml="False" IsDraft="False" Password="[new System.Net.NetworkCredential(String.Empty, g_excMailSPass).Password]" SaveCopy="True" Subject="[g_config(&quot;Has_Error_Subject&quot;).ToString.Replace(&quot;[DATETIME]&quot;, DateTime.Today.ToString(&quot;dd/MM/yyyy&quot;))]" To="[g_config(&quot;mailTo&quot;).ToString]" User="[g_excMailUser]" />
+                                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.938650306748,90.1104294478528" sap2010:WorkflowViewState.IdRef="LogMessage_17" Level="Info" Message="[&quot;Error Transaction Not Found. Send Email to AMC&quot;]" />
+                                </Sequence>
+                              </If.Else>
+                            </If>
+                            <Delay DisplayName=" Delay 1 second" Duration="00:00:01" sap:VirtualizedContainerService.HintSize="798.625766871166,21.7914110429448" sap2010:WorkflowViewState.IdRef="Delay_7" />
+                            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="798.625766871166,213.20245398773" sap2010:WorkflowViewState.IdRef="ForEach`1_9" Values="[Directory.GetFiles(g_tempPath)]">
+                              <ui:ForEach.Body>
+                                <ActivityAction x:TypeArguments="x:String">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="x:String" Name="fileName" />
+                                  </ActivityAction.Argument>
+                                  <ui:Delete ContinueOnError="True" sap:VirtualizedContainerService.HintSize="283.877300613497,78.3312883435583" sap2010:WorkflowViewState.IdRef="Delete_2" Path="[fileName]" />
+                                </ActivityAction>
+                              </ui:ForEach.Body>
+                            </ui:ForEach>
+                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="798.625766871166,90.1104294478528" sap2010:WorkflowViewState.IdRef="LogMessage_18" Level="Info" Message="[&quot;Clear Temp Files&quot;]" />
+                          </Sequence>
+                          <FlowStep.Next>
+                            <x:Reference>__ReferenceID2</x:Reference>
+                          </FlowStep.Next>
+                        </FlowStep>
+                      </FlowDecision.False>
+                    </FlowDecision>
+                  </FlowDecision.False>
+                </FlowDecision>
+              </FlowStep.Next>
+            </FlowStep>
+          </FlowStep.Next>
+        </FlowStep>
+        <x:Reference>__ReferenceID3</x:Reference>
+        <x:Reference>__ReferenceID4</x:Reference>
+        <x:Reference>__ReferenceID0</x:Reference>
+        <x:Reference>__ReferenceID5</x:Reference>
+        <x:Reference>__ReferenceID6</x:Reference>
+        <x:Reference>__ReferenceID1</x:Reference>
+        <x:Reference>__ReferenceID7</x:Reference>
+        <x:Reference>__ReferenceID8</x:Reference>
+        <x:Reference>__ReferenceID2</x:Reference>
+      </Flowchart>
+    </TryCatch.Try>
+    <TryCatch.Catches>
+      <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="685.546012269939,20.6134969325153" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ActivityAction x:TypeArguments="s:Exception">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+          </ActivityAction.Argument>
+          <Assign sap:VirtualizedContainerService.HintSize="262.085889570552,59.4846625766871" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign.To>
+              <OutArgument x:TypeArguments="s:Exception">[g_exception]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="s:Exception">[exception]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </ActivityAction>
+      </Catch>
+    </TryCatch.Catches>
+    <TryCatch.Finally>
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.938650306748,90.1104294478528" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Run Result: &quot; + If(g_exception is Nothing, &quot;Successfully&quot;, &quot;Error&quot; + vbCrlf + &quot;Reason: &quot; + vbCrlf + g_exception.Message)]" />
+    </TryCatch.Finally>
+  </TryCatch>
+</Activity>
